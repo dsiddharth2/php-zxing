@@ -1,0 +1,13 @@
+{
+    "name": "sid/php-zxing",
+    "description": "Wrapper for zxing using php",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Siddharth",
+            "email": "dsiddharth2@gmail.com"
+        }
+    ],
+    "require": {}
+}
