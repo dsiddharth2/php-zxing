@@ -43,3 +43,4 @@ class PHPZxingDecoder extends PHPZxingBase  {
 
 $decoder = new PHPZxingDecoder();
 $decoder->getJavaPath();
+echo "Sid";
