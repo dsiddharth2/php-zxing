@@ -1,6 +1,6 @@
 <?php
 /*
-Descrition : ZxingImageNotFound - returns the obejct of ZxingImageNotFound if any bar / Qr Code is
+Descrition : ZxingBarNotFound - returns the obejct of ZxingBarNotFound if any bar / Qr Code is
 not found
 
 license: MIT-style
@@ -36,7 +36,7 @@ authors:
 
 namespace PHPZxing;
 
-class ZxingImageNotFound  {
+class ZxingBarNotFound  {
     // Path of the image decoded
     private $imagePath      = null;
 

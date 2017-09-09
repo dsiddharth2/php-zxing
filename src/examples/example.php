@@ -2,7 +2,7 @@
     require dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . "PHPZxing" . DIRECTORY_SEPARATOR . "PHPZxingBase.php";
     require dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . "PHPZxing" . DIRECTORY_SEPARATOR . "PHPZxingDecoder.php";
     require dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . "PHPZxing" . DIRECTORY_SEPARATOR . "ZxingImage.php";
-    require dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . "PHPZxing" . DIRECTORY_SEPARATOR . "ZxingImageNotFound.php";
+    require dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . "PHPZxing" . DIRECTORY_SEPARATOR . "ZxingBarNotFound.php";
 
     use PHPZxing\PHPZxingDecoder;
 

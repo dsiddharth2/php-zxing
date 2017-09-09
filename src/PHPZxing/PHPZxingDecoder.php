@@ -162,7 +162,7 @@ class PHPZxingDecoder extends PHPZxingBase  {
 
             } else if(preg_match('/No barcode found/', $singleLine)) {
                 $imagePath = array_shift(explode(" ", $singleLine));
-                $image[] = new ZxingImageNotFound($imagePath, 101, "No barcode found");
+                $image[] = new ZxingBarNotFound($imagePath, 101, "No barcode found");
             }
         }
 
