@@ -1,6 +1,6 @@
 <?php
 /*
-Descrition : PHPZxingBase Base class that has all base stuff stored
+Descrition : ZxingImage - returns the decoded images in ZxingImage Object
 
 license: MIT-style
 
@@ -34,26 +34,39 @@ authors:
 */
 namespace PHPZxing;
 
-class PHPZxingBase  {
-    
-    // name of the javase.jar file located in /src/bin directory
-    private $_JAVASE_PATH = 'javase-3.2.0.jar';
+class ZxingImage  {
+    // Decoded Value from source
+    private $imageValue     = null;
 
-    // name of the core.jar file located in /src/bin directory
-    private $_CORE_PATH = "core-3.2.0.jar";
+    // Format of decoded data - CODE_39 etc..
+    private $format         = null;
 
-    // location of java in your machine
-    private $_JAVA_PATH = "/usr/bin/java";
+    // Type of decoded data - TEXT, URI etc..
+    private $type           = null;   
 
-    public function getJavaPath() {
-        return $this->_JAVA_PATH;
+    // Path of the image decoded
+    private $imagePath      = null;
+
+    public function __construct($imagePath, $imageValue , $format, $type) {
+        $this->imageValue   = $imageValue;
+        $this->format       = $format;
+        $this->type         = $type;
+        $this->imagePath    = $imagePath;
     }
 
-    public function getJARPath() {
-        return dirname(__DIR__) . DIRECTORY_SEPARATOR  . 'bin' . DIRECTORY_SEPARATOR . $this->_JAVASE_PATH;
+    public function getImageValue() {
+        return $this->imageValue;
     }
 
-    public function getCorePAth() {
-        return dirname(__DIR__) . DIRECTORY_SEPARATOR  . 'bin' . DIRECTORY_SEPARATOR . $this->_CORE_PATH;
+    public function getFormat() {
+        return $this->format;
+    }
+
+    public function getType() {
+        return $this->type;
+    }
+
+    public function getImagePath() {
+        return $this->imagePath;
     }
 }
