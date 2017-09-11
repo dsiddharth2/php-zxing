@@ -156,7 +156,8 @@ class PHPZxingDecoder extends PHPZxingBase  {
 
                 $imageValue = $output[$key + 2];
 
-                $imagePath = array_shift(explode(" ", $singleLine));
+                $exploded = explode(" ", $singleLine);
+                $imagePath = array_shift($exploded);
 
                 $image[] = new ZxingImage($imagePath, $imageValue, $format, $type);
 
