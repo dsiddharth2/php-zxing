@@ -1,8 +1,8 @@
 {
-    "name": "sid/php-zxing",
+    "name": "dsiddharth2/php-zxing",
     "description": "Wrapper for zxing using php",
     "type": "library",
-    "license": "MIT",    
+    "license": "MIT",
     "authors": [
         {
             "name": "Siddharth",
@@ -11,7 +11,7 @@
     ],
     "autoload": {
         "psr-0" : {
-            "sid/php-zxing" : "src"
+            "dsiddharth2/php-zxing" : "src"
         }
     }
 }
