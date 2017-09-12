@@ -42,19 +42,16 @@ Note
 Basic Usage
 ----------
 ```php
-    
-    use PHPZxing\PHPZxingDecoder;
+use PHPZxing\PHPZxingDecoder;
 
-    $decoder        = new PHPZxingDecoder();
-    $decodedData    = current($decoder->decode('../images/Code128Barcode.jpg'));
-    $decodedData->getImageValue();
-    $decodedData->getFormat();
-    $decodedData->getType();
+$decoder        = new PHPZxingDecoder();
+$decodedData    = current($decoder->decode('../images/Code128Barcode.jpg'));
+$decodedData->getImageValue();
+$decodedData->getFormat();
+$decodedData->getType();
 ```
 
-The Dcooded data is an Array of Objects of PHPZxing\ZxingImage if the bar code is found.
-
-If not found then it is an array of Objects PHPZxing\ZxingBarNotFound.
+The Dcooded data is an Array of Objects of PHPZxing\ZxingImage if the bar code is found. If not found then it is an array of Objects PHPZxing\ZxingBarNotFound.
 
 The Public methods that we can use in PHPZxing\ZxingImage are,
 
