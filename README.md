@@ -120,7 +120,7 @@ If your java PATH is not set properly, the decoder will not work. You need to se
 use PHPZxing\PHPZxingDecoder;
 
 $decoder        = new PHPZxingDecoder();
-**$decoder->setJavaPath('/your/path/to/java');**
+$decoder->setJavaPath('/your/path/to/java');
 $decodedData    = $decoder->decode('../images/Code128Barcode.jpg');
 print_r($decodedData);
 ```
