@@ -10,26 +10,7 @@ Install using composer
 {  
     "require": {
         "dsiddharth2/php-zxing": "dev-master"
-    },
-    "repositories": [
-        {
-            "type": "package",
-            "package": {
-                "name": "dsiddharth2/php-zxing",
-                "version": "dev-master",
-                "source": {
-                    "url": "https://github.com/dsiddharth2/php-zxing.git",
-                    "type": "git",
-                    "reference": "master"
-                },
-                "autoload": {
-                    "psr-0" : {
-                        "PHPZxing" : "src"
-                    }
-                }
-            }
-        }
-    ]  
+    }  
 }
 ```
 
