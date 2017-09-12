@@ -93,24 +93,32 @@ class PHPZxingDecoder extends PHPZxingBase  {
     private function prepareImageArray() {
         $image = array();
         foreach ($this->_ARRAY_IMAGES as $arrayImage) {
-            $command = $this->basePrepare();
-            $command = $command . $arrayImage . $this->SPACE;            
-            
-            if($this->try_harder == true) {
-                $command = $command . "--try_harder" . $this->SPACE;
-            }
+            try {
+                if(!file_exists($arrayImage)) {
+                    throw new \Exception($arrayImage . ": file does not exist");
+                }
 
-            if($this->multiple_bar_codes == true) {
-                $command = $command . "--multi" . $this->SPACE;
-            }
+                $command = $this->basePrepare();
+                $command = $command . $arrayImage . $this->SPACE;
+                
+                if($this->try_harder == true) {
+                    $command = $command . "--try_harder" . $this->SPACE;
+                }
 
-            if($this->crop != false) {
-                $command = $command . "--crop=" . $this->crop . $this->SPACE;
-            }
+                if($this->multiple_bar_codes == true) {
+                    $command = $command . "--multi" . $this->SPACE;
+                }
 
-            $script_output = "";
-            exec($command, $script_output);           
-            $image[] = current($this->createImages($script_output));
+                if($this->crop != false) {
+                    $command = $command . "--crop=" . $this->crop . $this->SPACE;
+                }
+
+                $script_output = "";
+                exec($command, $script_output);
+                $image[] = current($this->createImages($script_output));
+            } catch(\Exception $e) {
+                echo $e->getMessage();
+            }
         }
         return $image;
     }
@@ -196,25 +204,34 @@ class PHPZxingDecoder extends PHPZxingBase  {
      */
     public function decode($image = null) {
         try {
+            
             if(is_array($image)) {
                 $this->setArrayImages($image);
 
                 if($this->_ARRAY_IMAGES == null || count($this->_ARRAY_IMAGES) <= 0) {
-                    throw new Exception("Nothing to decode");
+                    throw new \Exception("Nothing to decode");
                 }
 
             } else {
+                if(!file_exists($image)) {
+                    throw new \Exception("File/Folder does not exist");
+                }
+
                 $this->setSingleImage($image);
 
                 if($this->_SINGLE_IMAGE == null) {
-                    throw new Exception("Nothing to decode");
+                    throw new \Exception("Nothing to decode");
                 }
             }
 
             $image = $this->prepare();
 
+            if(empty($image)) {
+                throw new \Exception("Is the java PATH set correctly ? Current Path set is : " . $this->getJavaPath());
+            }
+
             return $image;
-        } catch(Exception $e) {
+        } catch(\Exception $e) {
             echo $e->getMessage();
         }
     }

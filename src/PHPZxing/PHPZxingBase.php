@@ -56,4 +56,11 @@ class PHPZxingBase  {
     public function getCorePAth() {
         return dirname(__DIR__) . DIRECTORY_SEPARATOR  . 'bin' . DIRECTORY_SEPARATOR . $this->_CORE_PATH;
     }
+
+    /**
+     * Set the default java path which we will use for decoding
+     */
+    public function setJavaPath($javaPath = "/usr/bin/java") {
+        $this->_JAVA_PATH = $javaPath;
+    }
 }

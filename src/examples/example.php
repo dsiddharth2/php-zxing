@@ -7,8 +7,10 @@
     use PHPZxing\PHPZxingDecoder;
 
     $decoder        = new PHPZxingDecoder();
-    $decodedData    = $decoder->decode('../images/Code128Barcode.jpg');
-    print_r($decodedData);
+    $decodedData    = current($decoder->decode('../images/Code128Barcode.jpg'));
+    $decodedData->getImageValue();
+    $decodedData->getFormat();
+    $decodedData->getType();
 
     $config = array(
         'try_harder' => true,
