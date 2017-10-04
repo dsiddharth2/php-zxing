@@ -85,7 +85,7 @@ class PHPZxingDecoder extends PHPZxingBase  {
     private function basePrepare() {
         $command = "";
         $command = $command . $this->getJavaPath() . $this->SPACE . "-cp" . $this->SPACE;
-        $command = $command . $this->getJARPath() . ":" . $this->getCorePAth() . $this->SPACE;
+        $command = $command . $this->getJARPath() . PATH_SEPARATOR . $this->getCorePAth() . $this->SPACE;
         $command = $command . $this->JAVA_DECODER_CLASS . $this->SPACE;
         return $command;        
     }
