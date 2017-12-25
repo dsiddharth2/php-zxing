@@ -183,7 +183,7 @@ class PHPZxingDecoder extends PHPZxingBase  {
      * Function that creates a command using the options provided
      */
     public function prepare() {
-        if($this->_ARRAY_IMAGES != null || count($this->_ARRAY_IMAGES) > 0) {
+        if(is_array($this->_ARRAY_IMAGES)) {
             return $this->prepareImageArray();
         } else {
             return $this->prepareSingleImage();
@@ -208,7 +208,7 @@ class PHPZxingDecoder extends PHPZxingBase  {
             if(is_array($image)) {
                 $this->setArrayImages($image);
 
-                if($this->_ARRAY_IMAGES == null || count($this->_ARRAY_IMAGES) <= 0) {
+                if($this->_ARRAY_IMAGES == null) {
                     throw new \Exception("Nothing to decode");
                 }
 

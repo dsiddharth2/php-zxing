@@ -1,4 +1,7 @@
 <?php 
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+    
     require dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . "PHPZxing" . DIRECTORY_SEPARATOR . "PHPZxingBase.php";
     require dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . "PHPZxing" . DIRECTORY_SEPARATOR . "PHPZxingDecoder.php";
     require dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . "PHPZxing" . DIRECTORY_SEPARATOR . "ZxingImage.php";
