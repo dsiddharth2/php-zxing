@@ -9,7 +9,7 @@ Install using composer
 ```json
 {  
     "require": {
-        "dsiddharth2/php-zxing": "dev-master"
+        "dsiddharth2/php-zxing": "1.0.0"
     }  
 }
 ```
