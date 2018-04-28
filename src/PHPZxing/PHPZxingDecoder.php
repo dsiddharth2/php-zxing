@@ -15,8 +15,8 @@ Provides: PHPZxingDecoder
 - 
 ...
 * PHPZxingDecoder
-* Version 1.0
-* Copyright (c) 2017 Siddharth Deshpande
+* Version 1.0.1
+* Copyright (c) 2018 Siddharth Deshpande
 *
 * Permission is hereby granted, free of charge, to any person
 * obtaining a copy of this software and associated documentation
@@ -79,7 +79,11 @@ class PHPZxingDecoder extends PHPZxingBase  {
 
         if(isset($config['crop']) && array_key_exists('crop', $config)) {
             $this->crop = strval($config['crop']);
-        }        
+        }
+
+        if(isset($config['returnAs']) && array_key_exists('returnAs', $config)) {
+            $this->returnAs = strval($config['returnAs']);
+        }
     }
 
     private function basePrepare() {
@@ -170,6 +174,7 @@ class PHPZxingDecoder extends PHPZxingBase  {
                 $image[] = new ZxingImage($imagePath, $imageValue, $format, $type);
 
             } else if(preg_match('/No barcode found/', $singleLine)) {
+                
                 $exploded = explode(" ", $singleLine);
                 $imagePath = array_shift($exploded);
                 $image[] = new ZxingBarNotFound($imagePath, 101, "No barcode found");
@@ -228,6 +233,11 @@ class PHPZxingDecoder extends PHPZxingBase  {
 
             if(empty($image)) {
                 throw new \Exception("Is the java PATH set correctly ? Current Path set is : " . $this->getJavaPath());
+            }
+
+            // If the image is single then return the actual image
+            if(count($image) == 1) {
+                return current($image);
             }
 
             return $image;

@@ -1,7 +1,6 @@
 <?php
 /*
-Descrition : ZxingBarNotFound - returns the obejct of ZxingBarNotFound if any bar / Qr Code is
-not found
+Descrition : PHPZxingInterface interface that will have all the interface methods stored
 
 license: MIT-style
 
@@ -33,40 +32,8 @@ authors:
 * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 * OTHER DEALINGS IN THE SOFTWARE.
 */
-
 namespace PHPZxing;
 
-use PHPZxing\PHPZxingInterface;
-
-class ZxingBarNotFound implements PHPZxingInterface  {
-    // Path of the image decoded
-    private $imagePath      = null;
-
-    // Error Code of the image
-    private $imageErrorCode = null;
-
-    // Message of error
-    private $message        = null;
-
-    public function __construct($imagePath, $imageErrorCode , $message) {
-        $this->imagePath        = $imagePath;
-        $this->imageErrorCode   = $imageErrorCode;
-        $this->message          = $message;
-    }
-
-    public function getImagePath() {
-        return $this->imagePath;
-    }
-
-    public function getImageErrorCode() {
-        return $this->imageErrorCode;
-    }
-
-    public function getErrorMessage() {
-        return $this->message;
-    }
-
-    public function isFound() {
-        return false;
-    }    
+interface PHPZxingInterface  {
+    public function isFound();
 }
