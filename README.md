@@ -30,7 +30,7 @@ Basic Usage
 use PHPZxing\PHPZxingDecoder;
 
 $decoder        = new PHPZxingDecoder();
-$decodedData    = $decoder->decode('../images/Code128Barcode.jpg');
+$data           = $decoder->decode('../images/Code128Barcode.jpg');
 if($data->isFound()) {
     $data->getImageValue();
     $data->getFormat();
