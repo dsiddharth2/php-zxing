@@ -8,8 +8,8 @@ authors:
 - Siddharth Deshpande (dsiddharth2@gmail.com)
 ...
 * PHPZxing
-* Version 1.0
-* Copyright (c) 2017 Siddharth Deshpande
+* Version 1.0.1
+* Copyright (c) 2018 Siddharth Deshpande
 *
 * Permission is hereby granted, free of charge, to any person
 * obtaining a copy of this software and associated documentation

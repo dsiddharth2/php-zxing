@@ -8,8 +8,8 @@ authors:
 - Siddharth Deshpande (dsiddharth2@gmail.com)
 ...
 * PHPZxing
-* Version 1.0
-* Copyright (c) 2017 Siddharth Deshpande
+* Version 1.0.1
+* Copyright (c) 2018 Siddharth Deshpande
 *
 * Permission is hereby granted, free of charge, to any person
 * obtaining a copy of this software and associated documentation
@@ -34,7 +34,9 @@ authors:
 */
 namespace PHPZxing;
 
-class ZxingImage  {
+use PHPZxing\PHPZxingInterface;
+
+class ZxingImage implements PHPZxingInterface {
     // Decoded Value from source
     private $imageValue     = null;
 
@@ -52,6 +54,10 @@ class ZxingImage  {
         $this->format       = $format;
         $this->type         = $type;
         $this->imagePath    = $imagePath;
+    }
+
+    public function isFound() {
+        return true;
     }
 
     public function getImageValue() {
