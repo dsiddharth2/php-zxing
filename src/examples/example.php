@@ -1,183 +1,105 @@
-PHPZxing - Wrapper for Zxing Java Library
-===========================================
-PHPZxing is a small php wrapper that uses the Zxing library to Create and read Barcodes.
-Under the hood it still uses the [Zxing library](https://github.com/zxing/zxing) to encode and decode data.
+<?php 
+/*
+Descrition : PHPZxing Example file
 
-Install using composer
---------------------
+license: MIT-style
 
-```json
-{  
-    "require": {
-        "dsiddharth2/php-zxing": "1.0.1"
-    }  
-}
-```
+authors:
+- Siddharth Deshpande (dsiddharth2@gmail.com)
+...
+* PHPZxing
+* Version 1.0.1
+* Copyright (c) 2018 Siddharth Deshpande
+*
+* Permission is hereby granted, free of charge, to any person
+* obtaining a copy of this software and associated documentation
+* files (the "Software"), to deal in the Software without
+* restriction, including without limitation the rights to use,
+* copy, modify, merge, publish, distribute, sublicense, and/or sell
+* copies of the Software, and to permit persons to whom the
+* Software is furnished to do so, subject to the following
+* conditions:
+*
+* The above copyright notice and this permission notice shall be
+* included in all copies or substantial portions of the Software.
+*
+* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+* EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+* OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+* NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+* HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+* WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+* FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+* OTHER DEALINGS IN THE SOFTWARE.
+*/
 
-Note
---------------------
-* Only Decoder is programmed right now. Needs programming of Encoder.
-* The Default location of java that is configured is /usr/bin/java
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+    
+    require dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . "PHPZxing" . DIRECTORY_SEPARATOR . "PHPZxingBase.php";
+    require dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . "PHPZxing" . DIRECTORY_SEPARATOR . "PHPZxingInterface.php";
+    require dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . "PHPZxing" . DIRECTORY_SEPARATOR . "PHPZxingDecoder.php";
+    require dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . "PHPZxing" . DIRECTORY_SEPARATOR . "ZxingImage.php";
+    require dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . "PHPZxing" . DIRECTORY_SEPARATOR . "ZxingBarNotFound.php";    
 
-Changes in version 1.0.1
---------------------
-* Added a isFound function that will tell if the bar code is found.
-* If the image has one bar code detected, then it returns the object instead of array of a single object.
+    use PHPZxing\PHPZxingDecoder;
 
-Basic Usage
-----------
-```php
-use PHPZxing\PHPZxingDecoder;
+    // Bar Code Found
+    $decoder        = new PHPZxingDecoder();
+    $data           = $decoder->decode('../images/Code128Barcode.jpg');
+    if($data->isFound()) {
+        $data->getImageValue();
+        $data->getFormat();
+        $data->getType();        
+    }
 
-$decoder        = new PHPZxingDecoder();
-$decodedData    = $decoder->decode('../images/Code128Barcode.jpg');
-if($data->isFound()) {
-    $data->getImageValue();
-    $data->getFormat();
-    $data->getType();        
-}
-```
+    // Bar Code Not Found
+    $decoder        = new PHPZxingDecoder();
+    $data           = $decoder->decode('../images/no_bar_code_found.jpeg');
+    if($data->isFound()) {
+        $data->getImageValue();
+        $data->getFormat();
+        $data->getType();        
+    } else {
+        echo "No Bar Code Found";
+    }
 
-The Decoded data is an Array of Objects of PHPZxing\ZxingImage if the bar code is found. If not found then it is an array of Objects PHPZxing\ZxingBarNotFound.
-
-Checking for existence of Barcode
-----------
-The Existance of bar code can be found using the functoin isFound()
-
-```php
-use PHPZxing\PHPZxingDecoder;
-
-$decoder        = new PHPZxingDecoder();
-$data           = $decoder->decode('../images/Code128Barcode.jpg');
-if($data->isFound()) {
-    $data->getImageValue();
-    $data->getFormat();
-    $data->getType();        
-}
-```
-
-You can also check using the instanceof object,
-```php
-use PHPZxing\PHPZxingDecoder;
-
-$decoder        = new PHPZxingDecoder();
-$data           = $decoder->decode('../images/Code128Barcode.jpg');
-if($data instanceof PHPZxing\ZxingImage) {
-    $data->getImageValue();
-    $data->getFormat();
-    $data->getType();
-}
-```
-The Public methods that we can use in PHPZxing\ZxingImage are,
-
-| Method Name       | Function                                                       |
-| -------------     |--------------------------------------------------------------|
-| getImageValue     | Get the value decoded in the image passed                      |
-| getFormat         | Get the format of the image that is encoded, example : CODE_39 |
-| getType           | Get the type of the image decoded, example : URL, TEXT etc     |
-| getImagePath      | Get Path of the image                                          |
-
-The Public methods that we can use in PHPZxing\ZxingImage are,
-
-| Method Name           | Function                                                       |
-| -------------         |--------------------------------------------------------------|
-| getImageErrorCode     | Get the error code for the image not found                     |
-| getErrorMessage       | Error Message                                                  |
-| getImagePath          | Get Path of the image                                          |
-
-
-Setting the configurations
-----------
-```php
-use PHPZxing\PHPZxingDecoder;
-
-$config = array(
-    'try_harder'            => true,
-);
-$decoder        = new PHPZxingDecoder($config);
-$decodedArray   = $decoder->decode('../images');
-if(is_array($decodedArray)){
-    foreach ($decodedArray as $data) {
-        if($data->isFound()) {
-            print_r($data);
+    // Bar Code Options
+    $config = array(
+        'try_harder'            => true,
+        'crop'                  => '100,200,300,300',
+    );
+    $decoder        = new PHPZxingDecoder($config);
+    $decodedArray   = $decoder->decode('../images');
+    if(is_array($decodedArray)){
+        foreach ($decodedArray as $data) {
+            if($data->isFound()) {
+                print_r($data);
+            }
         }
     }
-}
-```
 
-You can also use it with configurations. The Decoder has 3 configurations,
-
-| Config Name           | Function                                                       |
-| -------------         |--------------------------------------------------------------|
-| try_harder            | If the image has bar/Qr code at unknown locations, then use this non mobile mode. |
-| multiple_bar_codes    | If the image has multiple bar codes you want to read. |
-| crop                  | Crop the image and it will read only the cropped portion |
-
-More Examples
-----------
-
-You can pass array of images too,
-
-```php
-use PHPZxing\PHPZxingDecoder;
-
-$decoder        = new PHPZxingDecoder();
-$imageArrays = array(
-    '../images/Code128Barcode.jpg',
-    '../images/Code39Barcode.jpg'
-);
-$decodedArray  = $decoder->decode($imageArrays);
-foreach ($decodedArray as $data) {
-    if($data instanceof PHPZxing\ZxingImage) {
-        print_r($data);
-    } else {
-        echo "Bar Code cannot be read";
+    // Send Multiple Images
+    $decoder        = new PHPZxingDecoder();
+    $imageArrays = array(
+        '../images/Code128Barcode.jpg',
+        '../images/Code39Barcode.jpg'
+    );
+    $decodedArray  = $decoder->decode($imageArrays);
+    foreach ($decodedArray as $data) {
+        if($data instanceof PHPZxing\ZxingImage) {
+            print_r($data);
+        } else {
+            echo "Bar Code cannot be read";
+        }
     }
-}
-```
 
-Reading multiple bar codes,
-
-```php
-use PHPZxing\PHPZxingDecoder;
-
-$config = array(
-    'try_harder' => true,
-    'multiple_bar_codes' => true
-);
-$decoder        = new PHPZxingDecoder($config);
-$decodedData    = $decoder->decode('../images/multiple_bar_codes.jpg');
-print_r($decodedData);
-```
-
-
-Set Java Path
-----------
-If your java PATH is not set properly, the decoder will not work. You need to set path of java variable.
-
-```php
-use PHPZxing\PHPZxingDecoder;
-
-$decoder        = new PHPZxingDecoder();
-$decoder->setJavaPath('/your/path/to/java');
-$decodedData    = $decoder->decode('../images/Code128Barcode.jpg');
-print_r($decodedData);
-```
-
-Where is my java located ?
-----------
-If you do not know the path to java, then you can use the following on *nix enviromnents
-```
-$ which java
-```
-
-On Windows read the follwoing stackoverflow [Link](https://stackoverflow.com/questions/304319/is-there-an-equivalent-of-which-on-the-windows-command-line)
-
-## Acknowledgments
-
-* [Zxing library](https://github.com/zxing/zxing)
-
-Contibution
-----------
-Please Contribute or suggest changes.
-
+    // Bar Code options for reading multiple bar codes in the same image
+    $config = array(
+        'try_harder' => true,
+        'multiple_bar_codes' => true
+    );
+    $decoder        = new PHPZxingDecoder($config);
+    $decodedData    = $decoder->decode('../images/multiple_bar_codes.jpg');
+    print_r($decodedData);
+?>
