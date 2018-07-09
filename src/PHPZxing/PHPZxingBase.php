@@ -37,10 +37,13 @@ namespace PHPZxing;
 class PHPZxingBase  {
     
     // name of the javase.jar file located in /src/bin directory
-    private $_JAVASE_PATH = 'javase-3.2.0.jar';
+    private $_JAVASE_PATH = 'javase-3.3.3.jar';
 
     // name of the core.jar file located in /src/bin directory
-    private $_CORE_PATH = "core-3.2.0.jar";
+    private $_CORE_PATH = "core-3.3.3.jar";
+
+    // name of the jcommander.jar file located in /src/bin directory
+    private $_JCOMMANDER_PATH = "jcommander-1.72.jar";
 
     // location of java in your machine
     private $_JAVA_PATH = "/usr/bin/java";
@@ -55,6 +58,10 @@ class PHPZxingBase  {
 
     public function getCorePAth() {
         return dirname(__DIR__) . DIRECTORY_SEPARATOR  . 'bin' . DIRECTORY_SEPARATOR . $this->_CORE_PATH;
+    }
+
+    public function getJcommanderPath() {
+        return dirname(__DIR__) . DIRECTORY_SEPARATOR  . 'bin' . DIRECTORY_SEPARATOR . $this->_JCOMMANDER_PATH;
     }
 
     /**
