@@ -171,7 +171,12 @@ If you do not know the path to java, then you can use the following on *nix envi
 $ which java
 ```
 
-On Windows read the follwoing stackoverflow [Link](https://stackoverflow.com/questions/304319/is-there-an-equivalent-of-which-on-the-windows-command-line)
+On Windows environment,
+```
+> where java
+```
+
+For more info, on Windows read the follwoing stackoverflow [Link](https://stackoverflow.com/questions/304319/is-there-an-equivalent-of-which-on-the-windows-command-line)
 
 ## Acknowledgments
 
