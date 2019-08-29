@@ -109,13 +109,14 @@ if(is_array($decodedArray)){
 }
 ```
 
-You can also use it with configurations. The Decoder has 3 configurations,
+You can also use it with configurations. The Decoder has 4 configurations,
 
 | Config Name           | Function                                                       |
 | -------------         |--------------------------------------------------------------|
 | try_harder            | If the image has bar/Qr code at unknown locations, then use this non mobile mode. |
 | multiple_bar_codes    | If the image has multiple bar codes you want to read. |
 | crop                  | Crop the image and it will read only the cropped portion |
+| possible_formats      | List of formats to decode, where format is any value in BarcodeFormat |
 
 More Examples
 ----------

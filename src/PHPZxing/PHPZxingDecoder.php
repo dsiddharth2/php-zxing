@@ -67,6 +67,9 @@ class PHPZxingDecoder extends PHPZxingBase  {
     // crop=left,top,width,height: Only examine cropped region of input image(s)
     private $crop = false;
     
+    //Formats to decode, where format is any value in BarcodeFormat
+    private $possible_formats = false;
+
     // Constructor for PHPZxingDecoder
     public function __construct($config = array()) {
         if(isset($config['try_harder']) && array_key_exists('try_harder', $config)) {
@@ -83,6 +86,10 @@ class PHPZxingDecoder extends PHPZxingBase  {
 
         if(isset($config['returnAs']) && array_key_exists('returnAs', $config)) {
             $this->returnAs = strval($config['returnAs']);
+        }
+
+        if(isset($config['possible_formats']) && array_key_exists('possible_formats', $config)) {
+            $this->possible_formats = strval($config['possible_formats']);
         }
     }
 
@@ -117,6 +124,10 @@ class PHPZxingDecoder extends PHPZxingBase  {
                     $command = $command . "--crop=" . $this->crop . $this->SPACE;
                 }
 
+                if ($this->possible_formats != false) {
+                    $command = $command . "--possible_formats " . $this->possible_formats . $this->SPACE;
+                }
+
                 $script_output = "";
                 exec($command, $script_output);
                 $image[] = current($this->createImages($script_output));
@@ -141,6 +152,10 @@ class PHPZxingDecoder extends PHPZxingBase  {
 
         if($this->crop != false) {
             $command = $command . "--crop=" . $this->crop . $this->SPACE;
+        }
+
+        if ($this->possible_formats != false) {
+            $command = $command . "--possible_formats " . $this->possible_formats . $this->SPACE;
         }
 
         exec($command, $script_output);
