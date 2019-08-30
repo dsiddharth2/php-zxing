@@ -19,6 +19,10 @@ Note
 * Only Decoder is programmed right now. Needs programming of Encoder.
 * The Default location of java that is configured is /usr/bin/java
 
+Changes in version 1.0.3
+--------------------
+* Functionality added for possible_formats to work
+
 Changes in version 1.0.2
 --------------------
 * Updated the new jars and tested on windows system
