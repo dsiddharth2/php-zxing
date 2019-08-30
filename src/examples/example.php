@@ -102,4 +102,14 @@ authors:
     $decoder        = new PHPZxingDecoder($config);
     $decodedData    = $decoder->decode('../images/multiple_bar_codes.jpg');
     print_r($decodedData);
+
+    // Bar Code options for reading multiple bar codes in the same image and restrict to CODE_128 and PDF_417
+    $config = array(
+        'try_harder' => true,
+        'multiple_bar_codes' => true,
+        'possible_formats' => ' CODE_128,PDF_417'
+    );
+    $decoder        = new PHPZxingDecoder($config);
+    $decodedData    = $decoder->decode('../images/multiple_bar_codes.jpg');
+    print_r($decodedData);
 ?>
