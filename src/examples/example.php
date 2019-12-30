@@ -67,7 +67,7 @@ authors:
     // Bar Code Options
     $config = array(
         'try_harder'            => true,
-        'crop'                  => '100,200,300,300',
+        'crop'                  => '100 200 300 300',
     );
     $decoder        = new PHPZxingDecoder($config);
     $decodedArray   = $decoder->decode('../images');
