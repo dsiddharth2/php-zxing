@@ -121,7 +121,7 @@ class PHPZxingDecoder extends PHPZxingBase  {
                 }
 
                 if($this->crop != false) {
-                    $command = $command . "--crop=" . $this->crop . $this->SPACE;
+                    $command = $command . "--crop " . $this->crop . $this->SPACE;
                 }
 
                 if ($this->possible_formats != false) {
@@ -151,7 +151,7 @@ class PHPZxingDecoder extends PHPZxingBase  {
         }
 
         if($this->crop != false) {
-            $command = $command . "--crop=" . $this->crop . $this->SPACE;
+            $command = $command . "--crop " . $this->crop . $this->SPACE;
         }
 
         if ($this->possible_formats != false) {
