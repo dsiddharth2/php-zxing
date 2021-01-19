@@ -35,12 +35,12 @@ authors:
 namespace PHPZxing;
 
 class PHPZxingBase  {
-    
+
     // name of the javase.jar file located in /src/bin directory
-    private $_JAVASE_PATH = 'javase-3.3.3.jar';
+    private $_JAVASE_PATH = 'javase-3.4.1.jar';
 
     // name of the core.jar file located in /src/bin directory
-    private $_CORE_PATH = "core-3.3.3.jar";
+    private $_CORE_PATH = "core-3.4.1.jar";
 
     // name of the jcommander.jar file located in /src/bin directory
     private $_JCOMMANDER_PATH = "jcommander-1.72.jar";
