@@ -181,7 +181,15 @@ class PHPZxingDecoder extends PHPZxingBase  {
                 $contentFormat  = explode(":", $dataExplode[1]);
                 $type         = $contentFormat[1];
 
-                $imageValue = $output[$key + 2];
+                $resultLineOffset = 2;
+                while(strpos($output[$key + $resultLineOffset],'Parsed')===false && isset($output[$key + $resultLineOffset])) {
+                    if ($resultLineOffset > 2) {
+                        $imageValue .= "\n" . $output[$key + $resultLineOffset];
+                    } else {
+                        $imageValue = $output[$key + $resultLineOffset];
+                    }
+                    $resultLineOffset++;
+                }
 
                 $exploded = explode(" ", $singleLine);
                 $imagePath = array_shift($exploded);
